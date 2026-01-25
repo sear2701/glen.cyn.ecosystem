@@ -3,12 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # ---- Load data ----
-csv_path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
+csv_path = "//workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df = pd.read_csv(csv_path)
 
 # ---- X-axis groups (in requested order) ----
 # ADDED "subshrub"
-groups = ["total", "forb", "grass", "shrub", "subshrub", "tree", "crust"]
+groups = ["forb", "grass", "shrub", "tree", "total", "crust"]
 
 # ---- Use ageclassn for bar differentiation + legend ----
 age_classes = sorted(df["ageclassn"].dropna().unique())
@@ -65,7 +65,7 @@ for i, a in enumerate(age_classes):
 
 # ---- Axes formatting ----
 ax.set_xticks(x)
-ax.set_xticklabels(["Total", "Forb", "Grass", "Shrub", "Subshrub", "Tree", "Crust"])
+ax.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "Biologic crust"])
 ax.set_ylabel("Cover (%)")
 ax.set_xlabel("Functional Group")
 
@@ -80,7 +80,7 @@ for spine in ax.spines.values():
 plt.tight_layout()
 
 # ---- Save figure ----
-output_path = "fgroup_grouped_bar_ageclass.png"
+output_path = "fgroup_grouped_bar_ageclass_ShrubCombined.png"
 plt.savefig(output_path, dpi=300, bbox_inches="tight")
 print(f"Saved figure to: {output_path}")
 

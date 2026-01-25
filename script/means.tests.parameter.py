@@ -17,13 +17,13 @@ except ImportError:
 # ----------------------------
 # Load data
 # ----------------------------
-csv_path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
+csv_path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
 df = pd.read_csv(csv_path)
 
 # Ensure ageclassn is treated as a categorical factor
 df["ageclassn"] = df["ageclassn"].astype("category")
 
-vars_to_test = ["forb", "grass", "shrub", "tree", "crust", "total"]
+vars_to_test = ["perennial", "annual", "native", "nonnative", "trich", "nrich", "nnrich", "wetland", "conserve"]
 
 # Drop rows with missing values in any tested variable or ageclassn
 df_sub = df[["ageclassn"] + vars_to_test].dropna().copy()
@@ -179,7 +179,7 @@ for y in vars_to_test:
 # ----------------------------
 import os
 
-out_dir = "anova_results"
+out_dir = "anova_results_parameters"
 os.makedirs(out_dir, exist_ok=True)
 
 summary_rows = []
