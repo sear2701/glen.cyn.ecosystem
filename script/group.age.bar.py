@@ -48,7 +48,7 @@ n_ages = len(age_classes)
 bar_w = 0.10
 offsets = (np.arange(n_ages) - (n_ages - 1) / 2.0) * bar_w
 
-fig, ax = plt.subplots(figsize=(12, 6), dpi=150)
+fig, ax = plt.subplots(figsize=(10, 6), dpi=150)
 
 for i, a in enumerate(age_classes):
     style = styles[i % len(styles)]
@@ -72,7 +72,7 @@ ax.set_xlabel("Functional Group")
 ax.set_ylim(0, max(1, (means.values + ses.values).max() * 1.10))
 ax.grid(axis="y", alpha=0.35)
 
-ax.legend(title="ageclassn", loc="upper right", frameon=True)
+ax.legend(title="Landscape age", loc="upper right", frameon=True)
 
 for spine in ax.spines.values():
     spine.set_linewidth(1.0)
