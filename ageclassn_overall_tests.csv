@@ -1,0 +1,7 @@
+variable,test_used,statistic,p_value,levene_p,min_group_n,normality_note,q_value_BH_FDR_across_vars
+native,Kruskal-Wallis,18.908333744177867,0.008479395905528,0.26052789955530914,2,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.050876375433168
+nonnative,Kruskal-Wallis,10.682512073270157,0.15307973501433433,0.4449022908072462,2,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.24505974542953265
+annual,Kruskal-Wallis,5.306304640698328,0.6226379955985484,0.18450744257052146,2,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.6226379955985484
+perennial,ANOVA (1-way),2.0395506361185496,0.062207923556894584,0.16627297772446162,2,All groups Shapiro p>0.05 (where test ran),0.18662377067068375
+nrich,Kruskal-Wallis,7.761454663175497,0.3540979511856946,0.23966209937925695,2,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.4249175414228335
+nnrich,Kruskal-Wallis,10.471851008338557,0.16337316361968843,0.7636233220275647,2,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.24505974542953265
