@@ -7,7 +7,7 @@ path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
 df = pd.read_csv(path)
 
 # Metrics (x-axis groups)
-metrics = ["native", "nonnative", "total", "annual", "perennial"]
+metrics = ["forb", "grass", "shrub", "tree", "crust"]
 
 # Calculate mean and standard error by "ab"
 grouped = df.groupby("ab")[metrics]
@@ -49,7 +49,7 @@ ax.bar(
     label="Above 3700 feet"
 )
 # Custom x-axis labels
-x_labels = ["Native plants", "Non-native plants", "All plants", "Annual plants", "Perennial plants"]
+x_labels = ["Forb", "Grass", "Shrub", "Tree", "Biologic crust"]
 
 ax.set_xticks(x)
 ax.set_xticklabels(x_labels)
@@ -59,7 +59,7 @@ ax.legend()
 plt.tight_layout()
 
 # ---- Save figure ----
-output_path = "Parameters_AbvBlw.png"
+output_path = "Fgroup_AbvBlw.png"
 plt.savefig(output_path, dpi=300, bbox_inches="tight")
 print(f"Saved figure to: {output_path}")
 
