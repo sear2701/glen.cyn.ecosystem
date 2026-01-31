@@ -65,7 +65,7 @@ axes[0].errorbar(
     x, nonnative_m, yerr=nonnative_se,
     capsize=0, **line_kw, **marker2, label="Non-native"
 )
-axes[0].set_ylabel("Plant cover (%)")
+axes[0].set_ylabel("Cover (%)")
 #axes[0].set_title("Native & Non-native Cover")
 legend_kw = dict(loc="center right", frameon=True)
 axes[0].legend(**legend_kw)
@@ -82,7 +82,7 @@ axes[1].errorbar(
     x, annual_m, yerr=annual_se,
     capsize=0, **line_kw, **marker2, label="Annual"
 )
-axes[1].set_ylabel("Plant cover (%)")
+axes[1].set_ylabel("Cover (%)")
 #axes[1].set_title("Perennial & Annual Cover")
 legend_kw = dict(loc="center right", frameon=True)
 axes[1].legend(**legend_kw)
