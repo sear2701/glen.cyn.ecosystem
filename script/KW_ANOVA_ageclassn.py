@@ -153,7 +153,7 @@ for var in variables:
             test_used = "ANOVA (1-way)"
 
             # Posthoc: Tukey HSD (appropriate means test after ANOVA)
-            if np.isfinite(pval) and pval <= 0.05:
+            if np.isfinite(pval) and pval <= 0.1:
                 tuk = pairwise_tukeyhsd(endog=tmp["y"], groups=tmp["ageclassn_cat"], alpha=0.05)
                 posthoc_results[var] = pd.DataFrame(
                     tuk.summary().data[1:],
@@ -169,7 +169,7 @@ for var in variables:
 
             # Posthoc: pairwise Mann-Whitney U with BH-FDR (Dunn-like)
             # (Good, simple nonparametric "means test" analogue for pairwise differences)
-            if np.isfinite(pval) and pval <= 0.05:
+            if np.isfinite(pval) and pval <= 0.1:
                 posthoc_results[var] = dunn_posthoc_with_bh(sub, "ageclassn_cat", var)
 
     overall_results.append({

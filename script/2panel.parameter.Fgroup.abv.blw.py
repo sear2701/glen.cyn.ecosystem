@@ -23,10 +23,10 @@ metrics_top = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich"]
 labels_top = [
     "Native plants",
     "Non-native plants",
-    "Native richness",
-    "Non-native richness",
     "Annual plants",
-    "Perennial plants"
+    "Perennial plants",
+    "Native richness",
+    "Non-native richness"
 ]
 
 grouped_top = df.groupby("ab")[metrics_top]
