@@ -8,7 +8,7 @@ import statsmodels.formula.api as smf
 # ----------------------------
 # Load data
 # ----------------------------
-path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
+path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df = pd.read_csv(path)
 
 # Ensure expected group labels (adjust here if your file uses different text)

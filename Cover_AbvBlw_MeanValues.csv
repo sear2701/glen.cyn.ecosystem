@@ -1,13 +1,13 @@
 Category,Metric,Below 3700 feet,Above 3700 feet
-Plant origin & life history,Native plants,30.131979591836735,40.83835714285714
-Plant origin & life history,Non-native plants,16.241204081632652,9.992714285714285
-Plant origin & life history,Annual plants,8.708836734693877,6.458178571428571
-Plant origin & life history,Perennial plants,36.03148979591837,43.16196428571429
-Plant origin & life history,Native richness,11.959183673469388,13.285714285714286
-Plant origin & life history,Non-native richness,4.020408163265306,3.6785714285714284
-Functional groups,Forb,6.434979591836735,6.466571428571428
-Functional groups,Grass,15.28369387755102,18.38417857142857
-Functional groups,Shrub,24.729122448979588,24.8055
-Functional groups,Tree,4.160489795918368,9.59432142857143
-Functional groups,All plants,46.37318367346939,50.83110714285714
-Functional groups,Biologic crust,3.2813061224489792,5.9375
+Plant origin & life history,Native plants,35.959709090909094,47.79209090909091
+Plant origin & life history,Non-native plants,17.602345454545453,14.55840909090909
+Plant origin & life history,Annual plants,11.218763636363636,11.574409090909091
+Plant origin & life history,Perennial plants,42.084945454545455,50.690636363636365
+Plant origin & life history,Native richness,12.090909090909092,13.318181818181818
+Plant origin & life history,Non-native richness,3.8,4.136363636363637
+Functional groups,Forb,6.506745454545454,7.137090909090909
+Functional groups,Grass,15.633654545454545,19.924181818181818
+Functional groups,Shrub,26.78218181818182,23.01909090909091
+Functional groups,Tree,4.5486,9.000545454545454
+Functional groups,All plants,53.56214545454546,62.350590909090904
+Functional groups,Biologic crust,3.1733454545454545,6.931818181818182

@@ -10,7 +10,7 @@ from statsmodels.stats.multitest import multipletests
 # ----------------------------
 # Load data
 # ----------------------------
-path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
+path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df = pd.read_csv(path)
 
 # Clean/ensure ageclassn is treated consistently
@@ -18,7 +18,8 @@ df = pd.read_csv(path)
 df["ageclassn"] = df["ageclassn"]
 df["ageclassn_cat"] = df["ageclassn"].astype(str)
 
-variables = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich"]
+#variables = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich"]
+variables = ["forb", "grass", "shrub", "tree", "crust", "total"]
 
 # ----------------------------
 # Helpers

@@ -96,7 +96,7 @@ for y in vars_to_test:
         effect = eta_squared_from_anova_table(aov)
 
         posthoc = None
-        if p_main < 0.05:
+        if p_main < 0.1:
             posthoc = pairwise_tukeyhsd(endog=df_sub[y].values, groups=df_sub["ageclassn"].values, alpha=0.05)
 
         results[y] = {
@@ -115,7 +115,7 @@ for y in vars_to_test:
 
         # Post-hoc for Kruskal-Wallis: Dunn's test with Holm (or Bonferroni)
         dunn_tbl = None
-        if (p_kw is not np.nan) and (p_kw < 0.05):
+        if (p_kw is not np.nan) and (p_kw < 0.1):
             if not HAS_SCPH:
                 print(
                     f"[{y}] Kruskal-Wallis is significant, but scikit-posthocs is not installed.\n"
@@ -161,7 +161,7 @@ for y in vars_to_test:
             print("\nTukey HSD (pairwise differences among ageclassn):")
             print(r["tukey"].summary())
         else:
-            print("\nTukey HSD: not run (ANOVA not significant at alpha=0.05).")
+            print("\nTukey HSD: not run (ANOVA not significant at alpha=0.1).")
 
     else:
         print(f"\nKruskal-Wallis H: {r['kw_H']:.4g}")
