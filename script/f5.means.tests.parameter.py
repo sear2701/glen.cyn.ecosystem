@@ -17,7 +17,7 @@ except ImportError:
 # ----------------------------
 # Load data
 # ----------------------------
-csv_path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.csv"
+csv_path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df = pd.read_csv(csv_path)
 
 # Ensure ageclassn is treated as a categorical factor

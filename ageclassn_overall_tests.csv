@@ -1,7 +1,7 @@
 variable,test_used,statistic,p_value,levene_p,min_group_n,normality_note,q_value_BH_FDR_across_vars
-forb,Kruskal-Wallis,16.62059965468587,0.020013420843304493,0.5028013762367574,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.040026841686608985
-grass,Kruskal-Wallis,4.683377228831773,0.6985377704180169,0.6338755915359883,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.6985377704180169
-shrub,Kruskal-Wallis,35.59665700144965,8.636619481524317e-06,0.2846446857528241,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,5.1819716889145906e-05
-tree,Kruskal-Wallis,19.703864425976843,0.006246133532211216,0.4149106150412723,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.01873840059663365
-crust,Kruskal-Wallis,13.774963389325146,0.0553316997680767,0.4287061221912749,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.08299754965211505
-total,Kruskal-Wallis,8.6029771094706,0.28243069352670597,0.5999965349034018,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.33891683223204716
+forb,Kruskal-Wallis,14.12500389556897,0.0490021833337707,0.259212658012272,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.08185698576694138
+grass,Kruskal-Wallis,5.1241881495128325,0.6448109662470053,0.012138978910005822,5,All groups Shapiro p>0.05 (where test ran),0.6448109662470053
+shrub,Kruskal-Wallis,35.032323649622434,1.1029066272766767e-05,0.19192650440881426,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,6.61743976366006e-05
+tree,Kruskal-Wallis,17.571503589250465,0.014060369227106519,0.36091824390877053,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.04218110768131956
+crust,Kruskal-Wallis,13.814998986078384,0.05457132384462758,0.4272237372737765,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.08185698576694138
+total,ANOVA (1-way),1.939741851122972,0.07628938191901222,0.7186007741171665,5,All groups Shapiro p>0.05 (where test ran),0.09154725830281465
