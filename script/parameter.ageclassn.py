@@ -105,7 +105,7 @@ axes[2].legend(**legend_kw)
 
 plt.tight_layout()
 
-output_path = "Ageclass_parameter.png"
+output_path = "F5_ageclass_parameter.png"
 plt.savefig(output_path, dpi=300, bbox_inches="tight")
 print(f"Saved figure to: {output_path}")
 
