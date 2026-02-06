@@ -12,7 +12,7 @@ df = pd.read_csv(path)
 y_pairs = [
     ("native", "nonnative"),
     ("perennial", "annual"),
-    ("nrich", "nnrich")
+    ("herbaceous", "woody")
 ]
 
 # -----------------------------
@@ -42,8 +42,8 @@ nonnative_m, nonnative_se = summ["nonnative_mean"].to_numpy(), se("nonnative")
 perennial_m, perennial_se = summ["perennial_mean"].to_numpy(), se("perennial")
 annual_m, annual_se = summ["annual_mean"].to_numpy(), se("annual")
 
-nrich_m, nrich_se = summ["nrich_mean"].to_numpy(), se("nrich")
-nnrich_m, nnrich_se = summ["nnrich_mean"].to_numpy(), se("nnrich")
+herbaceous_m, herbaceous_se = summ["herbaceous_mean"].to_numpy(), se("herbaceous")
+woody_m, woody_se = summ["woody_mean"].to_numpy(), se("woody")
 
 # -----------------------------
 # Figure setup
@@ -87,20 +87,20 @@ axes[1].set_ylabel("Cover (%)")
 legend_kw = dict(loc="center right", frameon=True)
 axes[1].legend(**legend_kw)
 # -----------------------------
-# BOTTOM — Native & Non-native richness
+# BOTTOM — Herbaceous and woody vegetation
 # -----------------------------
 axes[2].errorbar(
-    x, nrich_m, yerr=nrich_se,
-    capsize=0, **line_kw, **marker1, label="Native"
+    x, herbaceous_m, yerr=herbaceous_se,
+    capsize=0, **line_kw, **marker1, label="Herbaceous plants"
 )
 axes[2].errorbar(
-    x, nnrich_m, yerr=nnrich_se,
-    capsize=0, **line_kw, **marker2, label="Non-native"
+    x, woody_m, yerr=woody_se,
+    capsize=0, **line_kw, **marker2, label="Woody plants"
 )
-axes[2].set_ylabel("Species richness")
+axes[2].set_ylabel("Cover (%)")
 #axes[2].set_title("Native & Non-native Richness")
 axes[2].set_xlabel("Landscape age")
-legend_kw = dict(loc="center right", frameon=True)
+legend_kw = dict(loc="lower right", frameon=True)
 axes[2].legend(**legend_kw)
 
 plt.tight_layout()

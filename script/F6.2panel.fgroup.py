@@ -67,7 +67,7 @@ pivot = wide.T
 fig, (ax1, ax2) = plt.subplots(
     nrows=2,
     ncols=1,
-    figsize=(10, 11),
+    figsize=(8, 10),
     dpi=150,
     gridspec_kw={"height_ratios": [1.2, 1.0]}
 )
