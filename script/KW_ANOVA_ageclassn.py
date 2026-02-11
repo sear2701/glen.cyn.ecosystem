@@ -18,8 +18,8 @@ df = pd.read_csv(path)
 df["ageclassn"] = df["ageclassn"]
 df["ageclassn_cat"] = df["ageclassn"].astype(str)
 
-#variables = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich"]
-variables = ["forb", "grass", "shrub", "tree", "crust", "total"]
+variables = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich", "trich", "herbrich", "woodyrich"]
+#variables = ["forb", "grass", "shrub", "tree", "crust", "total"]
 
 # ----------------------------
 # Helpers

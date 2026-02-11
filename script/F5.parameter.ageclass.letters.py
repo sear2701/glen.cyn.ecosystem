@@ -12,7 +12,7 @@ df = pd.read_csv(path)
 y_pairs = [
     ("native", "nonnative"),
     ("perennial", "annual"),
-    ("herbaceous", "woody")
+    ("woody", "herbaceous")
 ]
 
 # -----------------------------
@@ -42,8 +42,8 @@ nonnative_m, nonnative_se = summ["nonnative_mean"].to_numpy(), se("nonnative")
 perennial_m, perennial_se = summ["perennial_mean"].to_numpy(), se("perennial")
 annual_m, annual_se = summ["annual_mean"].to_numpy(), se("annual")
 
-herbaceous_m, herbaceous_se = summ["herbaceous_mean"].to_numpy(), se("herbaceous")
 woody_m, woody_se = summ["woody_mean"].to_numpy(), se("woody")
+herbaceous_m, herbaceous_se = summ["herbaceous_mean"].to_numpy(), se("herbaceous")
 
 # -----------------------------
 # Helpers: find index by x value + label just beyond error bar
@@ -104,11 +104,10 @@ axes[0].errorbar(
     x, nonnative_m, yerr=nonnative_se,
     capsize=0, **line_kw, **marker2, label="Non-native"
 )
-axes[0].set_ylabel("Cover (%)")
+axes[0].set_ylabel("Cover (%)", fontsize=14)
 axes[0].legend(loc="center right", frameon=True)
 
 # --- TOP PANEL LETTERS (corrected b's: now on NATIVE, not NONNATIVE) ---
-# a, x, y, y* (unchanged)
 add_label_at_errorbar(axes[0], x, native_m,    native_se,    x_value=1,  text="a",  where="below")
 add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=1,  text="x",  where="above")
 add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=2,  text="y",  where="below")
@@ -116,11 +115,13 @@ add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=6,  text="y
 add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=25, text="y",  where="below")
 add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=40, text="y",  where="above")
 add_label_at_errorbar(axes[0], x, nonnative_m, nonnative_se, x_value=50, text="y",  where="below")
-
-# b's (FIXED per your instructions)
-add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=25, text="b", where="above")
-add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=40, text="b", where="below")
-add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=50, text="b", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=2, text="b", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=4, text="c*", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=6, text="bc", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=6, text="bc", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=25, text="c", where="above")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=40, text="c", where="below")
+add_label_at_errorbar(axes[0], x, native_m, native_se, x_value=50, text="c", where="above")
 
 # -----------------------------
 # MIDDLE — Perennial & Annual cover
@@ -133,28 +134,40 @@ axes[1].errorbar(
     x, annual_m, yerr=annual_se,
     capsize=0, **line_kw, **marker2, label="Annual"
 )
-axes[1].set_ylabel("Cover (%)")
+axes[1].set_ylabel("Cover (%)", fontsize=14)
 axes[1].legend(loc="center right", frameon=True)
+
+# --- Middle PANEL LETTERS (as previously requested) ---
+
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=1,  text="a",   where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=2,  text="b",  where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=4,  text="c*", where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=6,  text="c", where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=12, text="c",  where="below")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=25, text="b",   where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=40, text="c",  where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=50, text="c",  where="above")
 
 # -----------------------------
 # BOTTOM — Herbaceous and woody vegetation
 # -----------------------------
 axes[2].errorbar(
-    x, herbaceous_m, yerr=herbaceous_se,
-    capsize=0, **line_kw, **marker1, label="Herbaceous plants"
+    x, woody_m, yerr=woody_se,
+    capsize=0, **line_kw, **marker1, label="Woody"
 )
 axes[2].errorbar(
-    x, woody_m, yerr=woody_se,
-    capsize=0, **line_kw, **marker2, label="Woody plants"
+    x, herbaceous_m, yerr=herbaceous_se,
+    capsize=0, **line_kw, **marker2, label="Herbaceous"
 )
-axes[2].set_ylabel("Cover (%)")
-axes[2].set_xlabel("Landscape age")
+axes[2].set_ylabel("Cover (%)", fontsize=14)
+axes[2].set_xlabel("Landscape age", fontsize=14)
 axes[2].legend(loc="lower right", frameon=True)
 
 # --- BOTTOM PANEL LETTERS (as previously requested) ---
+
 add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=1,  text="a",   where="below")
 add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=2,  text="ac",  where="below")
-add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=6,  text="b*c", where="above")
+add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=6,  text="bc", where="above")
 add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=12, text="bc",  where="below")
 add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=25, text="b",   where="above")
 add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=40, text="bc",  where="above")
