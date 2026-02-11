@@ -102,7 +102,7 @@ axes[0].errorbar(
     x, nnrich_m, yerr=nnrich_se,
     capsize=0, **line_kw, **marker2, label="Non-native"
 )
-axes[0].set_ylabel("Cover (%)", fontsize=14)
+axes[0].set_ylabel("Richness", fontsize=14)
 axes[0].legend(loc="center right", frameon=True)
 
 # --- TOP PANEL LETTERS (corrected b's: now on NATIVE, not NONNATIVE) ---

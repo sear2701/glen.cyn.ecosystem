@@ -144,7 +144,7 @@ add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=2,  text="b
 add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=4,  text="c*", where="above")
 add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=6,  text="c", where="above")
 add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=12, text="c",  where="below")
-add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=25, text="b",   where="above")
+add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=25, text="c",   where="above")
 add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=40, text="c",  where="above")
 add_label_at_errorbar(axes[1], x, perennial_m, perennial_se, x_value=50, text="c",  where="above")
 
