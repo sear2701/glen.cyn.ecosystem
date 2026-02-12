@@ -1,10 +1,7 @@
 variable,test_used,statistic,p_value,levene_p,min_group_n,normality_note,q_value_BH_FDR_across_vars
-native,Kruskal-Wallis,25.971673996998675,0.0005095718878378881,0.45689273268901076,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.004586146990540993
-nonnative,ANOVA (1-way),2.9577985827449025,0.009036911541968529,0.10335970688887697,5,All groups Shapiro p>0.05 (where test ran),0.02033305096942919
-annual,Kruskal-Wallis,4.833582830796095,0.6802635044921839,0.017468992793099453,5,All groups Shapiro p>0.05 (where test ran),0.6802635044921839
-perennial,Kruskal-Wallis,19.948655457097004,0.005681660316983721,0.8002876166291749,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.02033305096942919
-nrich,Kruskal-Wallis,11.167534475366237,0.13147636163595228,0.016200035965623822,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.19721454245392842
-nnrich,Kruskal-Wallis,19.14058708518951,0.007758158210821209,0.05816726891644604,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.02033305096942919
-trich,Kruskal-Wallis,8.102997660324382,0.32359940862432535,0.02018838207860226,5,All groups Shapiro p>0.05 (where test ran),0.36404933470236606
-herbrich,Kruskal-Wallis,8.594414359122432,0.2831010881180281,0.4174518460330802,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.36398711329460753
-woodyrich,Kruskal-Wallis,11.378311496570799,0.12294740889127179,0.4131216328183803,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.19721454245392842
+forbunkn,Kruskal-Wallis,15.479161466409368,0.030324947110833677,0.1803369565697189,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.060649894221667354
+grassunkn,Kruskal-Wallis,6.366152246022352,0.4977040389756542,0.013994674523362772,5,All groups Shapiro p>0.05 (where test ran),0.4977040389756542
+shrub,Kruskal-Wallis,33.175551266310016,2.455524680838953e-05,0.2517472081874092,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.0001473314808503372
+tree,Kruskal-Wallis,18.420403032926835,0.01021056807176806,0.3498111953861851,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.03063170421530418
+crust,Kruskal-Wallis,12.920453142659564,0.07407041799489011,0.4164044125267817,5,Non-normal group(s) or insufficient n for Shapiro; used nonparametric,0.09945996244892155
+total,ANOVA (1-way),1.8989097147835534,0.08288330204076796,0.7510896937747138,5,All groups Shapiro p>0.05 (where test ran),0.09945996244892155

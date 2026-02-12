@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 csv_path_top = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df_top = pd.read_csv(csv_path_top)
 
-groups = ["forb", "grass", "shrub", "tree", "total", "crust"]
+groups = ["forbunkn", "grassunkn", "shrub", "tree", "totalunkn", "crust"]
 age_classes = sorted(df_top["ageclassn"].dropna().unique())
 
 summary = df_top.groupby("ageclassn")[groups].agg(["mean", "std", "count"])
@@ -85,11 +85,11 @@ offsets = (np.arange(n_ages) - (n_ages - 1) / 2.0) * bar_w
 # keys: (group_name, ageclassn) -> letter(s)
 sig = {
     # A) Forb
-    ("forb", 1): "a",
-    ("forb", 6): "b",
-    ("forb", 12): "b*",
-    ("forb", 25): "b",
-    ("forb", 50): "b",
+    ("forbunkn", 1): "a",
+    ("forbunkn", 6): "c",
+    ("forbunkn", 12): "bc",
+    ("forbunkn", 25): "c",
+    ("forbunkn", 50): "bc",
 
     # B) Shrub
     ("shrub", 1): "a",
@@ -141,9 +141,9 @@ for i, a in enumerate(age_classes):
         bar_patches[(g, a)] = cont.patches[j]
 
 ax1.set_xticks(x)
-ax1.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "Biologic crust"])
-ax1.set_ylabel("Cover (%)")
-ax1.set_xlabel("Functional Group")
+ax1.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "Biologic crust"], fontsize=13)
+ax1.set_ylabel("Cover (%)", fontsize=14)
+#ax1.set_xlabel("Functional Group")
 ax1.set_ylim(0, max(1, (means.values + ses.values).max() * 1.10))
 ax1.grid(axis="y", alpha=0.35)
 
@@ -181,8 +181,8 @@ for (g, a), txt in sig.items():
 # ------------------- BOTTOM plot -------------------
 pivot.plot(kind="bar", stacked=True, color=colors, ax=ax2)
 
-ax2.set_xlabel("Landscape age")
-ax2.set_ylabel("Proportion of cover")
+ax2.set_xlabel("Landscape age", fontsize=14)
+ax2.set_ylabel("Proportion of cover", fontsize=14)
 ax2.set_xticks(range(len(pivot.index)))
 ax2.set_xticklabels(pivot.index.astype(str), rotation=0, ha="center")
 ax2.set_ylim(0, 1)
