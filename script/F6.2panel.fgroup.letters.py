@@ -86,6 +86,7 @@ offsets = (np.arange(n_ages) - (n_ages - 1) / 2.0) * bar_w
 sig = {
     # A) Forb
     ("forbunkn", 1): "a",
+    ("forbunkn", 2): "ab",
     ("forbunkn", 6): "c",
     ("forbunkn", 12): "bc",
     ("forbunkn", 25): "c",
