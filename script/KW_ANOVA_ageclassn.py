@@ -19,7 +19,8 @@ df["ageclassn"] = df["ageclassn"]
 df["ageclassn_cat"] = df["ageclassn"].astype(str)
 
 #variables = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich", "trich", "herbrich", "woodyrich", "totalunkn"]
-variables = ["forbunkn", "grassunkn", "shrub", "tree", "crust", "total"]
+#variables = ["forbunkn", "grassunkn", "shrub", "tree", "crust", "total"]
+variables = ["conserve", "conserve2", "wetland", "wetland2"]
 
 # ----------------------------
 # Helpers

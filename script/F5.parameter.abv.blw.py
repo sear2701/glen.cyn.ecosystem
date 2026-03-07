@@ -19,14 +19,13 @@ width = 0.35
 # =========================================================
 # TOP PANEL — Origin / life history
 # =========================================================
-metrics_top = ["native", "nonnative", "annual", "perennial", "nrich", "nnrich"]
+metrics_top = ["native", "nonnative", "annual", "perennial", "total"]
 labels_top = [
     "Native\nplants",
     "Non-native\nplants",
     "Annual\nplants",
     "Perennial\nplants",
-    "Native\nrichness",
-    "Non-native\nrichness"
+    "Total\nplants"
 ]
 
 grouped_top = df.groupby("ab")[metrics_top]
@@ -70,8 +69,8 @@ ax0_right.set_ylim(axes[0].get_ylim())
 # =========================================================
 # BOTTOM PANEL — Functional groups
 # =========================================================
-metrics_bot = ["forb", "grass", "shrub", "tree", "total", "crust"]
-labels_bot = ["Forb", "Grass", "Shrub", "Tree", "All plants", "Biologic crust"]
+metrics_bot = ["forb", "grass", "shrub", "tree", "crust"]
+labels_bot = ["Forb", "Grass", "Shrub", "Tree", "Soil biologic crust"]
 
 grouped_bot = df.groupby("ab")[metrics_bot]
 means_bot = grouped_bot.mean().reindex(["below", "above"])
@@ -101,17 +100,26 @@ bars_bot_above = axes[1].bar(
 axes[1].set_xticks(x_bot)
 axes[1].set_xticklabels(labels_bot)
 axes[1].set_ylabel("Cover (%)")
+axes[1].set_ylim(0, 70)
+
+# Remove right-side y-axis ticks and labels
+axes[1].tick_params(right=False, labelright=False)
 
 # =========================================================
 # Add significance symbols (*, **)
 # =========================================================
-def add_sig_symbols(ax, metrics, ses, bars_below, bars_above, sig_map, fontsize=16):
+def add_sig_symbols(ax, metrics, ses, bars_below, bars_above, sig_map,
+                    fontsize=16,
+                    y_offset_frac=0.000,  # SMALLER than 0.03 -> closer
+                    y_offset_pts=-1):      # tiny point nudge
     """
     sig_map keys: (metric_name, "below"/"above") -> symbol "*" or "**"
-    Places symbol centered above the target bar at mean + SE + offset.
+    Places symbol centered above the target bar at mean + SE + small offset.
     """
+
+    # data-units offset (scaled to axis range)
     y0, y1 = ax.get_ylim()
-    y_offset = 0.03 * (y1 - y0)
+    y_offset_data = y_offset_frac * (y1 - y0)
 
     for (metric, group), symbol in sig_map.items():
         idx = metrics.index(metric)
@@ -119,27 +127,32 @@ def add_sig_symbols(ax, metrics, ses, bars_below, bars_above, sig_map, fontsize=
         patch = container.patches[idx]
 
         x = patch.get_x() + patch.get_width() / 2
-        y = patch.get_height() + float(ses.loc[group, metric]) + y_offset
 
-        ax.text(
-            x, y, symbol,
-            ha="center", va="bottom",
+        # place at top of bar + SE, then nudge slightly upward
+        y = patch.get_height() + float(ses.loc[group, metric]) + y_offset_data
+
+        ax.annotate(
+            symbol,
+            (x, y),
+            xytext=(0, y_offset_pts),   # small extra nudge in points
+            textcoords="offset points",
+            ha="center",
+            va="bottom",
             fontsize=fontsize,
             fontweight="bold"
         )
 
 # ---- significance symbol locations ----
-# Top panel: Native plants (Above) = *, Perennial plants (Above) = **
 sig_top = {
-    ("native", "above"): "*",
-    ("perennial", "above"): "**",
+    ("native", "above"): "**",
+    ("perennial", "above"): "*",
+    ("total", "above"): "*",
 }
 
-# Bottom panel: Grass (Above) = **, Tree (Above) = *, All plants (Above) = **
 sig_bot = {
-    ("grass", "above"): "**",
-    ("tree", "above"): "*",
-    ("total", "above"): "**",
+    ("grass", "above"): "*",
+    ("tree", "above"): "**",
+    
 }
 
 # Add symbols (call AFTER bars are drawn)
@@ -149,7 +162,9 @@ add_sig_symbols(
     ses=ses_top,
     bars_below=bars_top_below,
     bars_above=bars_top_above,
-    sig_map=sig_top
+    sig_map=sig_top,
+    y_offset_frac=0.006,  # tweak smaller/bigger as needed
+    y_offset_pts=1
 )
 
 add_sig_symbols(
@@ -158,7 +173,9 @@ add_sig_symbols(
     ses=ses_bot,
     bars_below=bars_bot_below,
     bars_above=bars_bot_above,
-    sig_map=sig_bot
+    sig_map=sig_bot,
+    y_offset_frac=0.006,
+    y_offset_pts=1
 )
 
 # ---------- Final formatting & save ----------

@@ -134,7 +134,7 @@ ax2.legend(
 
 plt.tight_layout()
 
-output_path = "F6_Fgroup_2panel.png"
+output_path = "F7_Fgroup_2panel.png"
 plt.savefig(output_path, dpi=300, bbox_inches="tight")
 print(f"Saved figure to: {output_path}")
 

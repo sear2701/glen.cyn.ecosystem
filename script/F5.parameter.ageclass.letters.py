@@ -55,34 +55,41 @@ def idx_at_x(x_arr, x_value):
     return int(matches[0])
 
 def add_label_at_errorbar(ax, x_arr, y_arr, yerr_arr, x_value, text, where="above",
-                          ypad_frac=0.015, dx_pts=0, fontsize=12):
+                          ypad_frac=0.005,   # smaller fractional padding
+                          ypad_pts=2,        # small fixed offset in points
+                          dx_pts=0,
+                          fontsize=12):
     """
     Place bold label just ABOVE or BELOW the error bar for the point at x_value.
+    Labels are positioned closer to the error bar.
     """
     i = idx_at_x(x_arr, x_value)
 
     y0, y1 = ax.get_ylim()
-    ypad = ypad_frac * (y1 - y0)
+    ypad_data = ypad_frac * (y1 - y0)
 
     if where.lower() == "above":
-        y_text = y_arr[i] + yerr_arr[i] + ypad
+        y_text = y_arr[i] + yerr_arr[i] + ypad_data
         va = "bottom"
+        offset = (dx_pts, ypad_pts)
     elif where.lower() == "below":
-        y_text = y_arr[i] - yerr_arr[i] - ypad
+        y_text = y_arr[i] - yerr_arr[i] - ypad_data
         va = "top"
+        offset = (dx_pts, -ypad_pts)
     else:
         raise ValueError("where must be 'above' or 'below'")
 
     ax.annotate(
         text,
         (x_arr[i], y_text),
-        xytext=(dx_pts, 0),
+        xytext=offset,
         textcoords="offset points",
         ha="center",
         va=va,
         fontsize=fontsize,
         fontweight="bold"
     )
+
 
 # -----------------------------
 # Figure setup
