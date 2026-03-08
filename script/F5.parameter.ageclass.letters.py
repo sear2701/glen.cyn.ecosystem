@@ -166,9 +166,29 @@ axes[2].errorbar(
     x, herbaceous_m, yerr=herbaceous_se,
     capsize=0, **line_kw, **marker2, label="Herbaceous"
 )
+
 axes[2].set_ylabel("Cover (%)", fontsize=14)
 axes[2].set_xlabel("Landscape age", fontsize=14)
+
+# Replace last tick label
+axes[2].set_xticks(x)
+axes[2].set_xticklabels(["1", "2", "4", "6", "12", "25", "40", ">50"])
+
 axes[2].legend(loc="lower right", frameon=True)
+# -----------------------------
+# BOTTOM — Herbaceous and woody vegetation
+# -----------------------------
+#axes[2].errorbar(
+#    x, woody_m, yerr=woody_se,
+#    capsize=0, **line_kw, **marker1, label="Woody"
+#)
+#axes[2].errorbar(
+#    x, herbaceous_m, yerr=herbaceous_se,
+#    capsize=0, **line_kw, **marker2, label="Herbaceous"
+#)
+#axes[2].set_ylabel("Cover (%)", fontsize=14)
+#axes[2].set_xlabel("Landscape age", fontsize=14)
+#axes[2].legend(loc="lower right", frameon=True)
 
 # --- BOTTOM PANEL LETTERS (as previously requested) ---
 

@@ -142,7 +142,7 @@ for i, a in enumerate(age_classes):
         bar_patches[(g, a)] = cont.patches[j]
 
 ax1.set_xticks(x)
-ax1.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "Biologic crust"], fontsize=13)
+ax1.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "SBC"], fontsize=13)
 ax1.set_ylabel("Cover (%)", fontsize=14)
 #ax1.set_xlabel("Functional Group")
 ax1.set_ylim(0, max(1, (means.values + ses.values).max() * 1.10))
@@ -184,8 +184,13 @@ pivot.plot(kind="bar", stacked=True, color=colors, ax=ax2)
 
 ax2.set_xlabel("Landscape age", fontsize=14)
 ax2.set_ylabel("Proportion of cover", fontsize=14)
+# Set ticks based on pivot index
 ax2.set_xticks(range(len(pivot.index)))
-ax2.set_xticklabels(pivot.index.astype(str), rotation=0, ha="center")
+
+labels = pivot.index.astype(str).tolist()
+labels[-1] = ">50"   # change only the last label
+
+ax2.set_xticklabels(labels, rotation=0, ha="center")
 ax2.set_ylim(0, 1)
 
 # ✅ Bottom legend: wide, horizontal categories, above the bottom panel (outside axes)

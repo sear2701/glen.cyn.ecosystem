@@ -61,11 +61,6 @@ axes[0].margins(x=0.03)
 axes[0].set_ylabel("Cover (%)")
 axes[0].legend(frameon=False)
 
-# Add right-hand axis for species richness (same scale)
-ax0_right = axes[0].twinx()
-ax0_right.set_ylabel("Species richness")
-ax0_right.set_ylim(axes[0].get_ylim())
-
 # =========================================================
 # BOTTOM PANEL — Functional groups
 # =========================================================
