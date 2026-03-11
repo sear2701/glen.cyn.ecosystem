@@ -54,10 +54,10 @@ ses   = ses.fillna(0.0)
 styles = [
     dict(facecolor="white", edgecolor="black", hatch=None),   # 1
     dict(facecolor="white", edgecolor="black", hatch="//"),   # 2
-    dict(facecolor="0.75",  edgecolor="black", hatch=None),   # 3
-    dict(facecolor="white", edgecolor="black", hatch="xx"),   # 5
+    dict(facecolor="0.75",  edgecolor="black", hatch=None),   # 4
+    dict(facecolor="white", edgecolor="black", hatch="xx"),   # 6
     dict(facecolor="0.55",  edgecolor="black", hatch=None),   # 12
-    dict(facecolor="white", edgecolor="black", hatch="\\\\"), # 23
+    dict(facecolor="white", edgecolor="black", hatch="\\\\"), # 25
     dict(facecolor="black", edgecolor="black", hatch=None),   # 40
     dict(facecolor="white", edgecolor="black", hatch="oo"),   # 50
 ]
@@ -70,137 +70,31 @@ fig, (ax1, ax2) = plt.subplots(
     ncols=1,
     figsize=(8, 10),
     dpi=150,
-    gridspec_kw={"height_ratios": [1.2, 1.0]}
+    gridspec_kw={"height_ratios": [1.0, 1.2]}
 )
 
-# Create extra vertical space between panels so the bottom legend can sit above ax2
 fig.subplots_adjust(hspace=0.35)
 
-# -------------------- TOP plot --------------------
-x = np.arange(len(groups))
-n_ages = len(age_classes)
-bar_w = 0.10
-offsets = (np.arange(n_ages) - (n_ages - 1) / 2.0) * bar_w
+# -------------------- TOP plot: STACKED BAR CHART --------------------
+pivot.plot(kind="bar", stacked=True, color=colors, ax=ax1)
 
-# ---- SIGNIFICANCE MAP (TOP PANEL ONLY) ----
-# keys: (group_name, ageclassn) -> letter(s)
-sig = {
-    # A) Forb
-    ("forbunkn", 1): "a",
-    ("forbunkn", 2): "ab",
-    ("forbunkn", 6): "c",
-    ("forbunkn", 12): "bc",
-    ("forbunkn", 25): "c",
-    ("forbunkn", 50): "bc",
-
-    # B) Shrub
-    ("shrub", 1): "a",
-    ("shrub", 2): "b",
-    ("shrub", 4): "cd",
-    ("shrub", 6): "cd",
-    ("shrub", 12): "cd",
-    ("shrub", 25): "c",
-    ("shrub", 40): "cd",
-    ("shrub", 50): "d",
-
-    # C) Tree
-    ("tree", 1): "a",
-    ("tree", 4): "ac",
-    ("tree", 12): "ac",
-    ("tree", 40): "bc",
-    ("tree", 50): "b",
-
-    # D) Crust
-    ("crust", 1): "a",   # value may be 0; still place label
-    ("crust", 2): "ac",
-    ("crust", 12): "b",
-    ("crust", 25): "b",
-    ("crust", 40): "bc",
-    ("crust", 50): "b",
-}
-
-# Build a lookup of where each ageclassn sits in age_classes
-age_to_i = {a: i for i, a in enumerate(age_classes)}
-group_to_j = {g: j for j, g in enumerate(groups)}
-
-# We collect the bar patches so we can position letters exactly centered
-bar_patches = {}  # (group, age) -> matplotlib.patches.Rectangle
-
-for i, a in enumerate(age_classes):
-    style = styles[i % len(styles)]
-    cont = ax1.bar(
-        x + offsets[i],
-        means.loc[a, groups].values,
-        width=bar_w,
-        yerr=ses.loc[a, groups].values,
-        error_kw=dict(ecolor="black", elinewidth=1.5, capsize=0),
-        linewidth=1.2,
-        label=str(a),
-        **style,
-    )
-    # cont.patches are in the same order as `groups`
-    for j, g in enumerate(groups):
-        bar_patches[(g, a)] = cont.patches[j]
-
-ax1.set_xticks(x)
-ax1.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "SBC"], fontsize=13)
-ax1.set_ylabel("Cover (%)", fontsize=14)
-#ax1.set_xlabel("Functional Group")
-ax1.set_ylim(0, max(1, (means.values + ses.values).max() * 1.10))
-ax1.grid(axis="y", alpha=0.35)
-
-# ✅ Top legend back inside the top panel (as in your original)
-ax1.legend(title="Landscape age", loc="upper right", frameon=True)
-
-# ---- Add significance letters above specified bars (TOP PANEL) ----
-# Use a small font because bars are narrow
-sig_fontsize = 9
-
-# vertical padding above error bar (fraction of y-range)
-y0, y1 = ax1.get_ylim()
-ypad = 0.015 * (y1 - y0)
-
-for (g, a), txt in sig.items():
-    # Skip if the age or group doesn't exist in the plotted data
-    if (g, a) not in bar_patches:
-        continue
-
-    patch = bar_patches[(g, a)]
-    x_center = patch.get_x() + patch.get_width() / 2
-
-    # height is the mean; add its SE to go above error bar
-    mean_val = float(means.loc[a, g]) if (a in means.index and g in means.columns) else 0.0
-    se_val = float(ses.loc[a, g]) if (a in ses.index and g in ses.columns) else 0.0
-
-    y_text = mean_val + se_val + ypad
-    ax1.text(
-        x_center, y_text, txt,
-        ha="center", va="bottom",
-        fontsize=sig_fontsize,
-        fontweight="bold"
-    )
-
-# ------------------- BOTTOM plot -------------------
-pivot.plot(kind="bar", stacked=True, color=colors, ax=ax2)
-
-ax2.set_xlabel("Landscape age", fontsize=14)
-ax2.set_ylabel("Proportion of cover", fontsize=14)
-# Set ticks based on pivot index
-ax2.set_xticks(range(len(pivot.index)))
+ax1.set_xlabel("Landscape age", fontsize=14)
+ax1.set_ylabel("Proportion of cover", fontsize=14)
+ax1.set_xticks(range(len(pivot.index)))
 
 labels = pivot.index.astype(str).tolist()
-labels[-1] = ">50"   # change only the last label
+labels[-1] = ">50"
 
-ax2.set_xticklabels(labels, rotation=0, ha="center")
-ax2.set_ylim(0, 1)
+ax1.set_xticklabels(labels, rotation=0, ha="center")
+ax1.set_ylim(0, 1)
 
-# ✅ Bottom legend: wide, horizontal categories, above the bottom panel (outside axes)
-handles, labels = ax2.get_legend_handles_labels()
-ax2.legend_.remove()  # remove the default legend created by pivot.plot
+# Top legend
+handles, labels = ax1.get_legend_handles_labels()
+ax1.legend_.remove()
 
 ncols = min(len(labels), 6)
 
-ax2.legend(
+ax1.legend(
     handles,
     labels,
     title=None,
@@ -211,6 +105,93 @@ ax2.legend(
     columnspacing=1.2,
     handletextpad=0.6,
 )
+
+# ------------------- BOTTOM plot: GROUPED BAR CHART -------------------
+x = np.arange(len(groups))
+n_ages = len(age_classes)
+bar_w = 0.10
+offsets = (np.arange(n_ages) - (n_ages - 1) / 2.0) * bar_w
+
+# ---- SIGNIFICANCE MAP (BOTTOM PANEL) ----
+sig = {
+    ("forbunkn", 1): "a",
+    ("forbunkn", 2): "ab",
+    ("forbunkn", 6): "c",
+    ("forbunkn", 12): "bc",
+    ("forbunkn", 25): "c",
+    ("forbunkn", 50): "bc",
+
+    ("shrub", 1): "a",
+    ("shrub", 2): "b",
+    ("shrub", 4): "cd",
+    ("shrub", 6): "cd",
+    ("shrub", 12): "cd",
+    ("shrub", 25): "c",
+    ("shrub", 40): "cd",
+    ("shrub", 50): "d",
+
+    ("tree", 1): "a",
+    ("tree", 4): "ac",
+    ("tree", 12): "ac",
+    ("tree", 40): "bc",
+    ("tree", 50): "b",
+
+    ("crust", 1): "a",
+    ("crust", 2): "ac",
+    ("crust", 12): "b",
+    ("crust", 25): "b",
+    ("crust", 40): "bc",
+    ("crust", 50): "b",
+}
+
+bar_patches = {}
+
+for i, a in enumerate(age_classes):
+    style = styles[i % len(styles)]
+    cont = ax2.bar(
+        x + offsets[i],
+        means.loc[a, groups].values,
+        width=bar_w,
+        yerr=ses.loc[a, groups].values,
+        error_kw=dict(ecolor="black", elinewidth=1.5, capsize=0),
+        linewidth=1.2,
+        label=str(a),
+        **style,
+    )
+    for j, g in enumerate(groups):
+        bar_patches[(g, a)] = cont.patches[j]
+
+ax2.set_xticks(x)
+ax2.set_xticklabels(["Forb", "Grass", "Shrub", "Tree", "All plants", "SBC"], fontsize=13)
+ax2.set_ylabel("Cover (%)", fontsize=14)
+ax2.set_ylim(0, max(1, (means.values + ses.values).max() * 1.10))
+ax2.grid(axis="y", alpha=0.35)
+
+# Bottom legend
+ax2.legend(title="Landscape age", loc="upper right", frameon=True)
+
+# ---- Add significance letters above specified bars (BOTTOM PANEL) ----
+sig_fontsize = 9
+y0, y1 = ax2.get_ylim()
+ypad = 0.015 * (y1 - y0)
+
+for (g, a), txt in sig.items():
+    if (g, a) not in bar_patches:
+        continue
+
+    patch = bar_patches[(g, a)]
+    x_center = patch.get_x() + patch.get_width() / 2
+
+    mean_val = float(means.loc[a, g]) if (a in means.index and g in means.columns) else 0.0
+    se_val = float(ses.loc[a, g]) if (a in ses.index and g in ses.columns) else 0.0
+
+    y_text = mean_val + se_val + ypad
+    ax2.text(
+        x_center, y_text, txt,
+        ha="center", va="bottom",
+        fontsize=sig_fontsize,
+        fontweight="bold"
+    )
 
 plt.tight_layout()
 
