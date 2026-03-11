@@ -126,6 +126,10 @@ axes[1].set_ylabel("Richness", fontsize=14)
 axes[1].set_xlabel("Landscape age", fontsize=14)
 axes[1].legend(loc="upper right", frameon=True)
 
+# Replace last tick label
+axes[1].set_xticks(x)
+axes[1].set_xticklabels(["1", "2", "4", "6", "12", "25", "40", ">50"])
+
 # --- BOTTOM PANEL LETTERS (as previously requested) ---
 
 #add_label_at_errorbar(axes[2], x, woody_m, woody_se, x_value=1,  text="a",   where="below")

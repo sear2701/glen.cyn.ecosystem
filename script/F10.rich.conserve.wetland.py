@@ -152,7 +152,7 @@ ax_top.errorbar(
     x, conserve_m, yerr=conserve_se,
     capsize=0, **line_kw, **marker1
 )
-ax_top.set_ylabel("Conservation index", fontsize=14)
+ax_top.set_ylabel("C-value", fontsize=14)
 
 add_label_at_errorbar(ax_top, x, conserve_m, conserve_se, x_value=1,  text="a", where="above")
 add_label_at_errorbar(ax_top, x, conserve_m, conserve_se, x_value=4,  text="b", where="above")
@@ -168,6 +168,8 @@ ax_bot.errorbar(
 )
 ax_bot.set_ylabel("Wetland index", fontsize=14)
 ax_bot.set_xlabel("Landscape age", fontsize=14)
+ax_bot.set_xticks(x)
+ax_bot.set_xticklabels(["1", "2", "4", "6", "12", "25", "40", ">50"])
 
 add_label_at_errorbar(ax_bot, x, wetland_m, wetland_se, x_value=1,  text="x", where="above")
 add_label_at_errorbar(ax_bot, x, wetland_m, wetland_se, x_value=4,  text="y", where="below")

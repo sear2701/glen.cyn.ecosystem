@@ -187,7 +187,7 @@ axes[2].legend(loc="lower right", frameon=True)
 #    capsize=0, **line_kw, **marker2, label="Herbaceous"
 #)
 #axes[2].set_ylabel("Cover (%)", fontsize=14)
-#axes[2].set_xlabel("Landscape age", fontsize=14)
+#axes[2].set_xlabel("Landscape age (years)", fontsize=14)
 #axes[2].legend(loc="lower right", frameon=True)
 
 # --- BOTTOM PANEL LETTERS (as previously requested) ---
