@@ -8,6 +8,25 @@ import matplotlib.pyplot as plt
 path = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df = pd.read_csv(path)
 
+# Compute mean wetland2 and conserve2 for each ageclassn
+mean_summary = (
+    df.groupby("ageclassn")[["wetland2", "conserve2"]]
+      .mean()
+      .reset_index()
+      .sort_values("ageclassn")
+      .rename(columns={
+          "wetland2": "wetland_mean",
+          "conserve2": "conserve_mean"
+      })
+)
+
+# Save to CSV
+output_csv = "ageclassn_wetland_conserve_means.csv"
+mean_summary.to_csv(output_csv, index=False)
+
+print(mean_summary)
+print(f"Saved CSV to: {output_csv}")
+
 # Columns to summarize
 y_pairs = [
     ("nrich", "nnrich"),

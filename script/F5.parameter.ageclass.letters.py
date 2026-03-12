@@ -29,6 +29,32 @@ summ = df.groupby("ageclassn").agg(agg)
 summ.columns = [f"{c[0]}_{c[1]}" for c in summ.columns]
 summ = summ.reset_index().sort_values("ageclassn")
 
+# -----------------------------
+# Export means for all plotted parameters to CSV
+# -----------------------------
+means_csv = summ[[
+    "ageclassn",
+    "native_mean",
+    "nonnative_mean",
+    "perennial_mean",
+    "annual_mean",
+    "woody_mean",
+    "herbaceous_mean"
+]].copy()
+
+means_csv = means_csv.rename(columns={
+    "native_mean": "native",
+    "nonnative_mean": "nonnative",
+    "perennial_mean": "perennial",
+    "annual_mean": "annual",
+    "woody_mean": "woody",
+    "herbaceous_mean": "herbaceous"
+})
+
+csv_output_path = "F5_ageclass_parameter_means.csv"
+means_csv.to_csv(csv_output_path, index=False)
+print(f"Saved means CSV to: {csv_output_path}")
+
 x = summ["ageclassn"].to_numpy()
 
 def se(prefix: str):

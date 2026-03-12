@@ -29,6 +29,16 @@ wide = df_top.groupby("fgroup")[x_order].sum()
 wide = wide.reindex(fgroup_order).fillna(0)
 pivot = wide.T
 
+# ---------- Export top-panel fgroup means to CSV ----------
+top_means_csv = (
+    pivot.reset_index()
+         .rename(columns={"index": "ageclassn"})
+)
+
+csv_output_path = "F6_top_panel_fgroup_means.csv"
+top_means_csv.to_csv(csv_output_path, index=False)
+print(f"Saved top-panel means CSV to: {csv_output_path}")
+
 # ---------- Bottom DATA ----------
 csv_path_bot = "/workspaces/glen.cyn.ecosystem/data/cover.site.ecosystem.shrub.combined.csv"
 df_bot = pd.read_csv(csv_path_bot)
