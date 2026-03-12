@@ -145,7 +145,7 @@ for i, a in enumerate(age_classes):
         yerr=ses.loc[a, groups].values,
         error_kw=dict(ecolor="black", elinewidth=1.5, capsize=0),
         linewidth=1.2,
-        label=str(a),
+        label=">50" if str(a) == "50" else str(a),
         **style,
     )
     # cont.patches are in the same order as `groups`
