@@ -60,6 +60,9 @@ axes[0].set_xticklabels(labels_top, fontsize=10, ha="center")
 axes[0].margins(x=0.03)
 axes[0].set_ylabel("Cover (%)")
 axes[0].legend(frameon=False)
+axes[0].set_ylim(0, 73)
+axes[0].set_yticks(np.arange(0, 71, 10))
+
 
 # =========================================================
 # BOTTOM PANEL — Functional groups
@@ -95,7 +98,8 @@ bars_bot_above = axes[1].bar(
 axes[1].set_xticks(x_bot)
 axes[1].set_xticklabels(labels_bot)
 axes[1].set_ylabel("Cover (%)")
-axes[1].set_ylim(0, 70)
+axes[1].set_ylim(0, 73)
+axes[1].set_yticks(np.arange(0, 71, 10))
 
 # Remove right-side y-axis ticks and labels
 axes[1].tick_params(right=False, labelright=False)
@@ -139,14 +143,14 @@ def add_sig_symbols(ax, metrics, ses, bars_below, bars_above, sig_map,
 
 # ---- significance symbol locations ----
 sig_top = {
-    ("native", "above"): "**",
-    ("perennial", "above"): "*",
+    #("native", "above"): "*",
+    #("perennial", "above"): "*",
     ("total", "above"): "*",
 }
 
 sig_bot = {
-    ("grass", "above"): "*",
-    ("tree", "above"): "**",
+   # ("grass", "above"): "*",
+    ("tree", "above"): "*",
     
 }
 

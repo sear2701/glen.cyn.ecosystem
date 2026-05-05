@@ -132,10 +132,25 @@ ax_tl.errorbar(
 )
 ax_tl.set_ylabel("Richness", fontsize=14)
 ax_tl.legend(loc="upper right", frameon=True)
+ax_tl.set_ylim(0, 17.5)
 
-add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=1,  text="a", where="above")
-add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=25, text="b", where="above")
-add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=40, text="b", where="above")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=1,  text="x", where="above")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=2,  text="x", where="below")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=4, text="x", where="above")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=6,  text="x", where="below")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=12,  text="x", where="below")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=25,  text="x", where="below")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=40, text="y", where="above")
+add_label_at_errorbar(ax_tl, x, nnrich_m, nnrich_se, x_value=50, text="x", where="above")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=1,  text="a", where="below")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=2,  text="b", where="above")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=4,  text="bc", where="above")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=6,  text="ab", where="below")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=12,  text="ab", where="above")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=25,  text="b", where="above")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=40,  text="bc", where="below")
+add_label_at_errorbar(ax_tl, x, nrich_m, nrich_se, x_value=50,  text="c", where="below")
+
 
 # -----------------------------
 # BOTTOM LEFT — Herbaceous & Woody richness
@@ -151,15 +166,16 @@ ax_bl.errorbar(
 ax_bl.set_ylabel("Richness", fontsize=14)
 ax_bl.set_xlabel("Landscape age", fontsize=14)
 ax_bl.legend(loc="upper right", frameon=True)
+ax_bl.set_ylim(0, 14)
 
 # Uncomment if you want the woody labels back
-# add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=1,  text="a",   where="below")
+add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=1,  text="a",   where="below")
 # add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=2,  text="ac",  where="below")
 # add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=6,  text="b*c", where="above")
 # add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=12, text="bc",  where="below")
-# add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=25, text="b",   where="above")
-# add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=40, text="bc",  where="above")
-# add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=50, text="bc",  where="above")
+add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=25, text="b",   where="above")
+add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=40, text="b",  where="above")
+add_label_at_errorbar(ax_bl, x, woody_m, woody_se, x_value=50, text="b",  where="above")
 
 # -----------------------------
 # TOP RIGHT — C-value (conserve2)
@@ -169,10 +185,11 @@ ax_tr.errorbar(
     capsize=0, **line_kw, **marker1
 )
 ax_tr.set_ylabel("C-value", fontsize=14)
+ax_tr.set_ylim(0, 5)
 
-add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=1,  text="a", where="above")
+add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=1,  text="a", where="below")
 add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=4,  text="b", where="above")
-add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=6,  text="b", where="below")
+add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=6,  text="b", where="above")
 add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=25, text="b", where="above")
 add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=40, text="b", where="above")
 add_label_at_errorbar(ax_tr, x, conserve_m, conserve_se, x_value=50, text="b", where="above")
@@ -186,10 +203,11 @@ ax_br.errorbar(
 )
 ax_br.set_ylabel("Wetland index", fontsize=14)
 ax_br.set_xlabel("Landscape age", fontsize=14)
+ax_br.set_ylim(0, 5)
 
-add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=1,  text="x", where="above")
-add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=4,  text="y", where="below")
-add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=50, text="y", where="below")
+add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=1,  text="a", where="below")
+add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=6,  text="a", where="above")
+add_label_at_errorbar(ax_br, x, wetland_m, wetland_se, x_value=50, text="b", where="above")
 
 # -----------------------------
 # X-axis ticks
@@ -213,7 +231,7 @@ for ax in axes[1, :]:
 # -----------------------------
 plt.tight_layout()
 
-output_path = "combined_4panel_figure.png"
+output_path = "F6_combined_4panel_figure.png"
 plt.savefig(output_path, dpi=300, bbox_inches="tight")
 print(f"Saved figure to: {output_path}")
 

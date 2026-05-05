@@ -23,7 +23,9 @@ df = pd.read_csv(csv_path)
 # Ensure ageclassn is treated as a categorical factor
 df["ageclassn"] = df["ageclassn"].astype("category")
 
-vars_to_test = ["perennial", "annual", "native", "nonnative", "trich", "nrich", "nnrich", "wetland", "conserve", "herbaceous", "woody"]
+vars_to_test = ["trich", "nrich", "nnrich", "herbrich", "woodyrich"]
+
+#"perennial", "annual", "native", "nonnative", "wetland", "conserve", 
 
 # Drop rows with missing values in any tested variable or ageclassn
 df_sub = df[["ageclassn"] + vars_to_test].dropna().copy()

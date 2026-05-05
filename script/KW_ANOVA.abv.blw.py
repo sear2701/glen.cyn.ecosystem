@@ -16,7 +16,7 @@ df["ab"] = df["ab"].astype(str).str.strip().str.lower()
 
 categories = [
     "native", "nonnative", "total", "annual", "perennial",
-    "forb", "grass", "shrub", "tree", "crust", "nrich", "nnrich"
+    "forb", "grass", "shrub", "tree", "crust", "nrich", "nnrich", "woodyrich", "herbrich"
 ]
 
 # ----------------------------
